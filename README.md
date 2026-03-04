@@ -33,10 +33,10 @@ The database and tables will be created automatically.
 ##  Tables Included
 - Users
 - MoodEntries
-- Capsules
+- Emoji
 
 ##  Team Usage
 All team members must:
 1. Clone this repository
 2. Import the SQL file
-3. Start working on backend connection
+3. Start working on it
