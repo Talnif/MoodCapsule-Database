@@ -35,7 +35,7 @@ MODIFY password_hash VARCHAR(255) NOT NULL;
 ALTER TABLE Users
 ADD CONSTRAINT unique_email UNIQUE (email);
 
---Tests
+-- Tests
 
 -- INSERT TEST
 INSERT INTO Users (full_name, email, password_hash, reminder_time)
