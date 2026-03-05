@@ -2,6 +2,9 @@
 -- MoodCapsule Journal App
 --
 
+CREATE DATABASE IF NOT EXISTS moodcapsule;
+USE moodcapsule;
+
 DROP TABLE IF EXISTS Users;
 
 --
@@ -32,23 +35,40 @@ MODIFY password_hash VARCHAR(255) NOT NULL;
 ALTER TABLE Users
 ADD CONSTRAINT unique_email UNIQUE (email);
 
---
--- 3. Test Insert
---
-INSERT INTO Users (full_name, email, password_hash, reminder_time)
-VALUES ('Tom Smith', 'tom@gmail.com', 'tompwd*12345*$', '20:00:00');
+--Tests
 
---
--- 4. Test Select
---
+-- INSERT TEST
+INSERT INTO Users (full_name, email, password_hash, reminder_time)
+VALUES ('Ujjwal Koirala', 'ujjwal@gmail.com', 'ujjwal*12345*$', '20:00:00');
+
+-- Insert another user
+INSERT INTO Users (full_name, email, password_hash, reminder_time)
+VALUES ('Aryan p', 'aryan@gmail.com', 'aryan123', '21:00:00');
+
+-- Check inserted users
 SELECT * FROM Users;
 
---
--- 5. Test Update
---
+-- UPDATE TEST
 UPDATE Users
-SET full_name = 'John Barnes'
+SET full_name = 'Aaditya Subedi'
 WHERE user_id = 1;
 
-/* Check the new update */
+-- Verify update
+SELECT * FROM Users;
+
+-- UNIQUE CONSTRAINT TEST (Should Fail)
+-- Email must be unique
+INSERT INTO Users (full_name, email, password_hash)
+VALUES ('Lovepreet', 'ujjwal@gmail.com', 'ujjwal123');
+
+-- NOT NULL TEST (Should Fail)
+-- full_name cannot be NULL
+INSERT INTO Users (email, password_hash)
+VALUES ('capstone@gmail.com', '12345687');
+
+-- DELETE TEST
+DELETE FROM Users
+WHERE user_id = 1;
+
+-- Verify deletion
 SELECT * FROM Users;
